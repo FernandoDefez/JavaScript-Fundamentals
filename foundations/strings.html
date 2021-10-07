@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title> Strings</title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Strings </h2>
+     <a href="index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4>Ways to declare a String</h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>let firstname = "Fernando";</p>
+               <p>let name = new String('Fernando');</p>
+          </code>
+     </div>
+     <br>
+     <h4>Strings' methods</h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>string.toLowerCase</p>
+               <p>string.toUpperCase</p>
+               <br>
+               <p class="comment">// Get rid of spaces at the begining and ending of the string</p>
+               <p>string.trim()</p>
+               <br>
+               <p class="comment">// Look for the value in the string</p>
+               <p>string.includes("value")</p>
+               <br>
+               <p class="comment">// Splits an string into an array</p>
+               <p>string.split(",")</p>
+          </code>
+     </div>
+     <br>
+     <h4>Template strings </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>let template = `Hola ${var}`</p>
+          </code>
+     </div>
+</body>
+
+<script>
+
+     console.log("******** STRINGS ********");
+
+     let firstname = "Fernando";
+     let lastname = "Defez";
+     let name = new String('Fernando');
+     let lorem = "      Lorem ipsum dolor dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.         ";
+
+     console.log(firstname, lastname, name);
+
+     console.log(
+          name,
+          firstname.length,
+          lastname.length,
+          firstname.toLowerCase(),
+          firstname.toUpperCase(),
+          lorem,
+          lorem.trim(),
+          lorem.includes('dolor'),
+          lorem.includes('defez'),
+          lorem.trim().split(","),
+     );
+
+     console.log("Template String");
+     let template = `My name is ${firstname} and my lastname is ${lastname}`;
+     console.log(template);
+
+</script>
+
+</html>

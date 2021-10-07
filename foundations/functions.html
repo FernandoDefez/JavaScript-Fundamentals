@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title> Functions</title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Functions </h2>
+     <a href="index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4> Function Declaration </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>myFunction(name="Fernando", age=21) {
+                    <br> &ThickSpace; return name, age
+                    <br> }</p>
+          </code>
+     </div>
+     <br>
+     <h4> Function Expressions </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>const myFun = function () { 
+                    <br> &ThickSpace; return 19;
+                    <br>}</p>
+               <br>
+          </code>
+     </div>
+     <h4> Function Invocation </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>myFunction();</p>
+               <p class="comment">// Can be invoked anywhere on the code</p>
+               <br>
+               <p> myFun(); </p>
+               <p class="comment">// Can be invoked after defining the Function Expression</p>
+               <br>
+          </code>
+     </div>
+</body>
+
+<script>
+
+     console.log("******** FUNCTIONS *******");
+
+     //Funciones declaradas
+
+     funcionDeclarada();
+
+     function funcionDeclarada(name = "Unknown", age = 0) {
+          console.log(`Función con parametros inicializados | ${name}, ${age}`);
+     }
+
+     funcionDeclarada("Fernando");
+     funcionDeclarada("Fernando", 20);
+
+     //Funciones expresadas / anónimas
+
+     // console.log(funcionExpresada());
+
+     const funcionExpresada = function () {
+          return 19;
+     }
+
+     console.log(funcionExpresada());
+
+     //Hoisting: Lo que sucede es que las declaraciones de variables y funciones
+     //son asignadas en memoria durante la fase de compilación, pero quedan
+     //exactamente en dónde las has escrito en el código.
+
+
+     // Función anónima autoejecutable
+
+     console.clear();
+
+     (function () {
+          console.log("Hola");
+     })();
+
+     (function (name = "Fernando", age = 22) {
+          console.log(name, age);
+     })("Víctor", 42);
+
+
+     // La Crockford
+     ((function () {
+          console.log("Versión Crockford");
+     })());
+
+     // Unaria
+     +(function () {
+          console.log("Versión Unaria");
+     })();
+
+     // Facebook
+     !(function () {
+          console.log("Versión Facebook");
+     })();
+
+</script>
+
+</html>

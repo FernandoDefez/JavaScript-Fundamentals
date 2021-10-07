@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title> Regular Expressions </title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Regular Expressions </h2>
+     <a href="index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4> Syntax </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>regexp = new RegExp("pattern", "flags");</p>
+               <br>
+               <p class="comment">// No flags</p>
+               <p>regexp = /pattern/;</p>
+               <br>
+               <p class="comment">// With flags g,m and i</p>
+               <p>regexp = /pattern/gmi;</p>
+          </code>
+     </div>
+</body>
+
+<script>
+
+     let text = `On July 7th, we made infrastructure 
+     upgrades on Laravel Forge to increase its stability 
+     and capacity. Due to the upgrades, we've updated 
+     the list of IP Addresses that may SSH into your 
+     server.`;
+
+
+     // with i, no difference between A and a (is case-insensitive)
+     // with g, it finds the last word
+     let regex = new RegExp("on", "i");
+     let regex2 = /on/ig;
+     let regex3 = /on{1,3}/ig;
+
+
+     console.log(regex.test(text));
+     console.log(regex.exec(text));
+     console.log(regex2.test(text));
+     console.log(regex2.exec(text));
+     console.log(regex3.test(text));
+     console.log(regex3.exec(text));
+
+     let text2 = `Hola me llamo Fernando 
+     tengo 22 años`;
+
+     let regex4 = /[0-23]/;
+     console.log(regex4.test(text2));
+     console.log(regex4.exec(text2));
+
+     console.clear();
+
+     let str = "We will, we will rock you"
+     console.log(str.match(/we/));
+     console.log(str.match(/we/i));
+     console.log(str.match(/we/g));
+     console.log(str.match(/we/gi));
+     console.log(str.match(/wwe/gi));
+     console.log(str.replace(/we/g, "I"));
+     console.log(str.replace(/we/i, "I"));
+     console.log(str.replace(/we/ig, "I"));
+
+     console.clear();
+
+     //What happens when we get a null
+     let matches = "JavaScript".match(/java/i) || [];
+     let result = (!matches.length) ? "No results" : "It matches";
+     console.log(result);
+
+     console.clear();
+
+     console.log("I love HTML".replace(/HTML/, "$& and CSS"));
+     console.log("I love HTML".replace(/HTML/, "$'CSS"));
+     console.log("I love HTML".replace(/HTML/, "$"));
+
+     console.clear();
+
+     //Testing my RegExp
+     let s = "I love Javascript"
+     let reg = /LOVE/i;
+
+     console.log(reg.test(s));
+
+     let s2 = "I love Javascript"
+     let reg2 = /LOVE/;
+
+     console.log(reg2.test(s2));
+
+     console.clear();
+
+     let phone = "+7(903)-123-45-67";
+     let regular_exp = /\d/g;
+     console.log(phone.match(regular_exp));
+     console.log(phone.match(regular_exp).join(''));
+
+     //A shorter way D does the opposite
+     console.log(phone.replace(/\D/g, ""));
+
+     console.clear();
+
+     let email = "fernandodefez@gmail.com";
+     console.log(email.match(/\W/g));
+
+     let r = email.match(/\W/g);
+     console.log(r.includes("@") && r.includes("."));
+
+</script>
+
+</html>

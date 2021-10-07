@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title>JavaScript Fundamentals</title>
+</head>
+
+<style>
+     code {
+          font-size: 19px;
+     }
+
+     p {
+          color: grey;
+     }
+</style>
+
+<body class="text-center">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Console </h2>
+     <a href="index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h2>Syntax</h2>
+     <ul>
+          <li class="nav-link">
+               <code>
+                    <br>console.log(console);
+                    <br>console.warn("Este es un mensaje de advertencia");
+                    <br>console.error("Este es un mensaje de erro");
+               </code>
+          </li>
+     </ul>
+</body>
+<script>
+
+     console.log(console);
+     console.warn("Este es un mensaje de advertencia");
+     console.error("Este es un mensaje de erro");
+
+     console.log(window);
+     console.log(document);
+
+     console.dir(window);
+     console.dir(document);
+
+     console.clear();
+
+     console.group("Lista de mis artistas favoritos");
+     console.log("Bebe Rexha");
+     console.log("Demi Lovato");
+     console.log("Dua Lipa");
+     console.log("Nina Zilli");
+     console.groupEnd();
+
+     console.groupCollapsed("Lista de mis artistas favoritos");
+     console.log("Bebe Rexha");
+     console.log("Demi Lovato");
+     console.log("Dua Lipa");
+     console.log("Nina Zilli");
+     console.groupEnd();
+
+     console.table(Object.entries(console));
+
+     console.clear();
+
+     const numbers = [1, 2, 3, 4, 5];
+     const vowels = ['a', 'e', 'i', 'o', 'u'];
+
+     console.table(numbers);
+     console.table(vowels);
+
+     const data = {
+          name: "Fernando",
+          lastname: "Defez",
+          age: 21
+     }
+
+     console.table(data);
+
+     console.clear();
+
+     console.time("Execution Time");
+
+     // const array = Array(100);
+
+     // for (let i = 0; i < array.length; i++) {
+     //      array[i] = i;
+     // }
+
+     //console.table(array);
+
+     console.timeEnd("Execution Time");
+
+     console.clear();
+
+     for (let i = 0; i <= 100; i++) {
+          console.count("Times");
+          console.log(i);
+     }
+
+     console.clear();
+
+     let x = 2, y = 2, testXY = "X must be lower than Y";
+     console.assert(x < y, { x, y }, testXY);
+
+     // console.alert("Este es un aviso");
+     // console.confirm("Continuar?");
+     // console.prompt("Ingresa un valor");
+
+</script>
+
+</html>

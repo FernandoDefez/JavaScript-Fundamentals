@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title>Set</title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark text-white p-3 fw-bold"> Set </h2>
+     <a href="../index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4> Set </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p> Set is a data collection (kind of an array) that stores unique data </p>
+               <p> const set = new Set([1, 2, 3, 3, false, {}, {}, true, 'hi', 'hi', 'HI']); </p>
+          </code>
+     </div>
+     <br>
+
+     <!-- SCRIPTS -->
+     <script>
+
+          // Set is an array with unique data
+          const set = new Set([1, 2, 3, 3, false, {}, {}, true, 'hi', 'hi', 'HI']);
+
+          console.log(set); console.log(set.size);
+
+          for (const key of set) { console.log(key); }
+
+          // Another way to declare a Set 
+          const set2 = new Set();
+          set2.add(1);
+          set2.add(2);
+          set2.add(2);
+          set2.add(false);
+          set2.add({});
+
+          console.log(set2);
+          console.log(set2.size);
+          for (const key of set2) { console.log(key); }
+
+
+          // SET IS NOT AN ARRAY. IT IS AN ITERABLE OBJECT. THEY ARE DATA COLLECTION
+          console.log(set[1]);
+
+          // Turn a set into an array so I can access to the index
+          console.log(Array.from(set)[1]);
+
+
+          // Removing an element from the set
+          set2.delete(2);
+          console.log(set2);
+
+          // Find an element 
+          console.log(set2.has(1));
+
+          // Clear the set
+          set2.clear();
+          console.log(set2);
+     </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title>Symbols</title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark text-white p-3 fw-bold"> Symbols </h2>
+     <a href="../index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4>Symbols</h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>Symbols are unique reference data type</p>
+               <p>const VALUE = Symbol(id, value)</p>
+          </code>
+     </div>
+     <br>
+     <!-- SCRIPTS -->
+     <script>
+          // Data type with unique reference from ES2015
+          // Symbols are used for declaring private properties
+          const NAME = Symbol("name");
+          const SAY_HI = Symbol("say_hi");
+
+          console.log(NAME);
+
+          const PERSON = {
+               [NAME]: 'Private Fernando',
+               NAME: 'Public Fernando'
+          }
+
+          PERSON[SAY_HI] = () => 'Hi, there I am a private function';
+
+          console.log(PERSON);
+          console.log(PERSON.NAME);
+          console.log(PERSON[NAME]);
+          console.log(PERSON[SAY_HI]());
+
+
+          for (const key in PERSON) {
+               console.log(key, ' : ', PERSON[key]);
+          }
+
+          console.log(Object.getOwnPropertySymbols(PERSON));
+
+     </script>
+</body>
+
+</html>

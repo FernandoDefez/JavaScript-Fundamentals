@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title> Loops </title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Loops </h2>
+     <a href="index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4> Some ways to declare an Array </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];</p>
+               <p>let data = { name: "Fernando", age: 21 }</p>
+          </code>
+     </div>
+     <br>
+     <h4> Foor Loop </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p class="comment">// Works with objects</p>
+               <p>for (const key in data) { 
+                    <br>&ThickSpace; console.log("Property Name:", key, "Value:", data[key]) 
+               <br>}</p>
+               <br>
+               <p class="comment">// Works with Arrays</p>
+               <p>for (const iterator of numbers) { 
+                    <br>&ThickSpace; console.log(iterator); 
+               <br>}</p>
+               <br>
+     </div>
+</body>
+
+<script>
+
+     let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+     let data = {
+          name: "Fernando",
+          age: 21
+     }
+
+     //Works with objects
+     for (const key in data) {
+          //console.log("Property Name:", key, "Value:", data[key])
+     }
+
+     //Works with arrays/objects/strings
+     for (const iterator of numbers) {
+          //console.log(iterator);
+     }
+
+     //Break and continue
+     for (let i = 0; i < numbers.length; i++) {
+          if (i === 5) {
+               console.log("Se rompe el loop, con break");
+               break;
+          }
+          console.log(numbers[i]);
+     }
+
+     //Break and continue
+     for (let i = 0; i < numbers.length; i++) {
+          if (i === 5) {
+               console.log("Continua con el loop, se salta este loop");
+               continue;
+          }
+          console.log(numbers[i]);
+     }
+
+</script>
+
+</html>

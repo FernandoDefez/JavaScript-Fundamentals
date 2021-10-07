@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title>Undefined Null NaN</title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Undefined, Null, NaN </h2>
+     <a href="index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4>What are they?</h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>let f = false;</p>
+               <p>let v = new Boolean(true);</p>
+          </code>
+     </div>
+     <br>
+     <h4>Some Truthy and Falsy</h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p class="comment">// An uninitialized variable</p>
+               <p>let un;</p>
+               <br>
+               <p class="comment">// A variable that has no value</p>
+               <p>let nulo = null;</p>
+               <br>
+               <p class="comment">// A variable that is not a number</p>
+               <p>let a = "Av" * 12;</p>
+          </code>
+     </div>
+</body>
+
+<script>
+
+     //Undefined, indica que no se ha inicializado una variable
+     let un;
+     console.log(un);
+
+     //Null indica la ausencia de valor
+     let nulo = null;
+     console.log(nulo);
+
+     // NaN aka Not a Number
+     let a = "Av" * 12;
+     console.log(a);
+
+</script>
+
+</html>

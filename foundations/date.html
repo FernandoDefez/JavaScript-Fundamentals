@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title>JavaScript Fundamentals</title>
+</head>
+
+<style>
+     code {
+          font-size: 19px;
+     }
+
+     p {
+          color: grey;
+     }
+</style>
+
+<body class="text-center">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Date Object </h2>
+     <a href="index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h2>Syntax</h2>
+     <ul>
+          <li class="nav-link">
+               <code>
+                    <br>console.log(Date());
+               </code>
+          </li>
+     </ul>
+</body>
+<script>
+
+     console.log(Date());
+     //GMT -0500, Greenwich Mean Time - Inglaterra hora 0
+     //México -5 horas respecto a la hora 0
+
+     let date = new Date();
+     //Getting date
+     console.log(date.getDate());
+     //Getting day of the week
+     console.log(date.getDay());
+     //Getting the month
+     console.log(date.getMonth());
+     //Getting the year
+     console.log(date.getFullYear());
+     //Getting the hour
+     console.log(date.getHours());
+     //Getting minutes
+     console.log(date.getMinutes());
+     //Getting seconds
+     console.log(date.getSeconds());
+     //Getting miliseconds
+     console.clear();
+     console.log(date.getMilliseconds());
+
+
+     console.log(date.toDateString());
+     console.log(date.toLocaleString());
+
+     console.log(date.getUTCHours()); //Hora de inglaterra
+
+     //Timestamp, cuántos segundos han pasado desde 
+     //el primero de enero de 1970
+     console.log(Date.now());  //Moment.js Library
+     //Es muy útil para calcular los tiempos
+
+     let birthdate = new Date(1999, 3, 21);
+     console.log(birthdate);
+
+
+</script>
+
+</html>

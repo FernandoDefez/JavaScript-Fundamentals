@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title> Promises Example With Fetch </title>
+</head>
+
+<body class="text-center pb-5">
+    <h4 class="mt-4"> Getting The First User's Posts w Fetch API </h4>
+    <div class="col-11 m-auto p-2 rounded">
+        <button id="get-first-users-posts" class="btn btn-primary">Get First User</button>
+        <div class="card w-100 mt-4" id="content">
+        </div>
+    </div>
+</body>
+<script>
+    const getFirstUsersPosts = document.getElementById("get-first-users-posts");
+    const content = document.getElementById("content");
+    const url = "https://jsonplaceholder.typicode.com";
+
+    /**
+     * This function gets the user's posts and their respective comments.
+     *
+     * @param {number} id the user's identification number
+     * */
+    const getUserInfo = id => {
+        fetch(`${url}/users?id=${id}`) // returns a Promise
+            .then(res => res.json()) // JSON is a Web API, returns a promise
+            .then(users => users[0]) // return the first user
+            .then(user => content.innerHTML += `<div class="card-header"><p class="user-email fw-bold">${user.email}</p></div>`)
+            .then(() => fetch(`${url}/posts?userId=${id}&_limit=2`))
+            .then(res => res.json()) // returns a promise with all the posts
+            .then(posts => {
+                content.innerHTML += posts.map(post => `<div class="card-body text-start post">
+                    <p class="post-title fw-bold">${post.title.toUpperCase()}</p></div>`).join('');
+                // Promise.all() receives an array of promises
+                return Promise.all(posts.map(post => fetch(`${url}/comments?postId=${post.id}&_limit=2`)))// here we get all the comments
+            })
+            .then(responses => Promise.all(responses.map(res => res.json()))) // getting the array of json's
+            .then(comments => {
+                document.querySelectorAll(".post")
+                    .forEach((div, i) => div.innerHTML += // Going through every single post container
+                        comments[i].map(comment =>
+                            `<p class="m-0 text-end text-success fw-bold">${comment.email}</p>
+                            <p class="m-0 text-end text-secondary">${comment.body}</p>`).join(''))
+            })
+            .catch(err => console.warn(err));
+    }
+
+    getFirstUsersPosts.addEventListener("click", () => getUserInfo(1));
+
+</script>
+
+</html>

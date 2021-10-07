@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title> Exercise 7</title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Exercise 7</h2>
+     <a href="../index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4> Directions </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-6 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].</p>
+               <br>
+               <p>22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe.miFuncion([1, 4, 5, 99, -60]) devolverá[99, -60].</p>
+               <br>
+               <p>23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe.miFuncion([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]) devolverá { pares: [2, 4, 6, 8, 0], impares: [1, 3, 5, 7, 9] }.</p>
+          </code>
+     </div>
+</body>
+
+<script>
+
+     //21st program
+     function powAnArray(arr = undefined) {
+          if (arr === undefined) return console.warn("Enter an array");
+          if (!arr instanceof Array) return console.warn("Must be an array type");
+
+          let pow = arr.map(el => el * el);
+          return console.log(pow);
+     }
+     powAnArray([1, 4, 5]);
+
+     //22nd program
+     function getMinAndMax(arr = undefined) {
+          if (arr === undefined) return console.warn("Enter an array");
+          if (!arr instanceof Array) return console.warn("Must be an array type");
+
+          return console.log(arr, Math.min(...arr), Math.max(...arr));
+     }
+     getMinAndMax([1, 4, 5, 99, -60]);
+
+     //23th program
+     function getPairsAndOdds(arr = undefined) {
+          if (arr === undefined) return console.warn("Enter an array");
+          if (!arr instanceof Array) return console.warn("Must be an array type");
+          return console.log({
+               pairs: arr.filter(num => num % 2 === 0),
+               odds: arr.filter(num => num % 2 === 1)
+          });
+     }
+     getPairsAndOdds([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
+
+</script>
+
+</html>

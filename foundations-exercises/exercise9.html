@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title> Exercise 9 </title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Exercise 9 </h2>
+     <a href="../index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4> Directions </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-6 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>27) Programa una clase llamada Pelicula.</p>
+               <br>
+               <p>La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la película en IMDB, titulo, director, año de estreno, país o países de origen, géneros y calificación en IMBD.
+                    <br>
+                    - Todos los datos del objeto son obligatorios.
+                    <br>
+                    - Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 7 restantes números.
+                    <br>
+                    - Valida que el título no rebase los 100 caracteres.
+                    <br>
+                    - Valida que el director no rebase los 50 caracteres.
+                    <br>
+                    - Valida que el año de estreno sea un número entero de 4 dígitos.
+                    <br>
+                    - Valida que el país o paises sea introducidos en forma de arreglo.
+                    <br>
+                    - Valida que los géneros sean introducidos en forma de arreglo.
+                    <br>
+                    - Valida que los géneros introducidos esten dentro de los géneros aceptados*.
+                    <br>
+                    - Crea un método estático que devuelva los géneros aceptados*.
+                    <br>
+                    - Valida que la calificación sea un número entre 0 y 10 pudiendo ser decimal de una posición.
+                    <br>
+                    - Crea un método que devuelva toda la ficha técnica de la película.
+                    <br>
+                    - Apartir de un arreglo con la información de 3 películas genera 3 instancias de la clase de forma 
+                         automatizada e imprime la ficha técnica de cada película.
+                         <br>
+                  </p>
+               <br>
+               <p>* Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.</p>
+          </code>
+     </div>
+</body>
+
+<script>
+
+     class Film {
+
+          /**
+           * @param Object has all movie's data
+           */
+          constructor({ id, title, director, release_year, country, genres, score }) {
+               this.id = id;
+               this.title = title;
+               this.director = director;
+               this.release_year = release_year;
+               this.country = country;
+               this.genres = genres;
+               this.score = score;
+
+               this.validate();
+          }
+
+          /**
+           * @return { Array } list of genres
+           */
+          static get getListOfGenres() {
+               return [
+                    "Action", "Adult", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film Noir", "Game - Show",
+                    "History", "Horror", "Musical", "Music", "Mystery", "News", "Reality - TV", "Romance", "Sci - Fi", "Short", "Sport", "Talk - Show", "Thriller", "War", "Western"
+               ];
+          }
+
+          /**
+           * @return { Object } returns the film data
+          */
+          get getFilm() {
+               return {
+                    id: this.id,
+                    title: this.title,
+                    director: this.director,
+                    release_year: this.release_year,
+                    country: this.country,
+                    genres: this.genres,
+                    score: this.score
+               }
+          }
+
+          validate() {
+               this.validateId(this.id); this.validateTitle(this.title); this.validateDirector(this.director); this.validateReleaseYear(this.release_year);
+               this.validateCountry(this.country); this.validateGenres(this.genres); this.validateScore(this.score);
+          }
+
+          isString(prop, value = undefined) {
+               if (value === undefined) return console.error(`The ${prop} is undefined`);
+               if (!value) return console.error(`The ${prop} has no value`);
+               if (typeof value !== "string") return console.error(`The ${prop} is not a string`);
+               return true;
+          }
+
+
+          isNumber(prop, value = undefined) {
+               if (value === undefined) return console.error(`The ${prop} is undefined`);
+               if (Math.sign(value) === -1) return console.error(`The ${prop} must not be lower than 0`);
+               if (typeof value !== "number") return console.error(`The ${prop} is not a number`);
+               return true;
+          }
+
+          isArray(prop, arr = undefined) {
+               if (arr === undefined) return console.error(`The ${prop} is undefined`);
+               if (arr.length === 0) return console.error(`The ${prop} is empty`);
+               if (!arr instanceof Array) return console.error(`The ${prop} is not an Array`);
+               for (const element of arr) {
+                    if (typeof element !== "string") throw new TypeError(`Array's elements must be strings`);
+               }
+               return true;
+          }
+
+          /**
+           * @param { String } id the id has an IMDB format (for more info visit IMDB Platform)
+          */
+          validateId(id) {
+               if (this.isString("id", id)) {
+                    if (!/^([a-z]){2}([0-9]){7}$/.test(id)) {
+                         throw new TypeError(`The id is not valid.It must have 9 chars, and the first two must be letters an the rest 7 must be numbers`);
+                    }
+               }
+          }
+
+          /**
+          * @param { String } title film title
+          */
+          validateTitle(title) {
+               if (this.isString("title", title))
+                    if (title.length > 100)
+                         return console.error(`The film title is not valid. Its length must be lower than 100`)
+          }
+
+          /**
+           * @param { String } director the director's name
+          */
+          validateDirector(director) {
+               if (this.isString("director", director))
+                    if (director.length > 50) return console.error(`The director is not valid. Its length must be lower than 50`)
+          }
+
+          /**
+           * @param { Number } release_year the year the movie was released
+          */
+          validateReleaseYear(release_year) {
+               if (this.isNumber("release year", release_year)) {
+                    if (!/^([0-9]){4}$/.test(release_year)) {
+                         return console.error(`The release date is not valid. It must have 4 chars`);
+                    }
+               }
+          }
+
+          /**
+           * @param { Array } country the country where the film was filmed
+          */
+          validateCountry(country) {
+               if (this.isArray("country", country));
+          }
+
+
+          /**
+           * @param { array } genres the genres the movies belong
+           */
+          validateGenres(genres) {
+               if (this.isArray("genres", genres)) {
+                    for (let genre of genres) {
+                         if (!Film.getListOfGenres.includes(genre))
+                              throw new TypeError(`The ${genre} element is not allowed to be a genre`);
+                    }
+               }
+          }
+
+          /**
+           * @param { Number } score The film's score
+           * @return { Boolean } true or false
+          */
+          validateScore(score) {
+               if (this.isNumber("score", score)) {
+                    this.score = score.toFixed(1);
+                    if (!(score >= 0 && score <= 10))
+                         throw new TypeError(`The score must be from 0 to 10 (including floats)`);
+               }
+          }
+
+     }
+
+
+     const films = [
+          {
+               id: "tt7292526",
+               title: "Joker",
+               director: "Todd Phillips",
+               release_year: 2019,
+               country: ["MEX", "USA"],
+               genres: ["Drama", "Thriller", "Crime"],
+               score: 9.0
+          },
+          {
+               id: "tt2282256",
+               title: "The Dark Knight",
+               director: "Christoper Nolan",
+               release_year: 2007,
+               country: ["USA", "US"],
+               genres: ["Drama", "Action", "Crime"],
+               score: 9.5
+          }
+     ]
+
+     films.forEach(el => console.table(new Film(el).getFilm))
+
+</script>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title> Class</title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Class </h2>
+     <a href="index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4> Syntax </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>  class ClassName {
+                    <br>
+                    <br> &ThickSpace;constructor(value) {
+                    <br> &ThickSpace; &ThickSpace;this.variable = value;
+                    <br> &ThickSpace; &ThickSpace;this.variable2 = null;
+                    <br> &ThickSpace;}
+                    <br>
+                    <br> &ThickSpace;set setVariable2Value(name) {
+                         <br>&ThickSpace; &ThickSpace; this.name = name;
+                         <br>&ThickSpace;}
+                         <br>
+                         <br> &ThickSpace;get getVariable2Value() {
+                              <br> &ThickSpace; &ThickSpace; return this.variable2
+                              <br> &ThickSpace;}
+                              <br>
+                    <br>}
+               </p>
+          </code>
+     </div>
+</body>
+
+<script>
+
+     class Animal {
+
+          /**
+           * @params name (string)
+           * @params age (number) in years
+          */
+          constructor(name, age) {
+               this.name = name;
+               this.age = age;
+          }
+
+          sleep() {
+               console.log(`ZzzZ!`);
+          }
+
+          eat() {
+               console.log(`${this.name} is eating`);
+          }
+
+     }
+
+     const cat = new Animal("Tom", 2);
+     console.log(cat);
+     cat.eat();
+     cat.sleep();
+
+
+     class Perro extends Animal {
+
+          constructor(name, age, breed) {
+               /**
+                * Método que manda a llamar al método
+                * constructor de la clase padre  
+               */
+               super(name, age);
+               this.breed = breed;
+               this.owner = "Unknown";
+          }
+
+          static greet() {
+               console.log(`This is the Perro class`);
+          }
+
+          eat() {
+               console.log(`${this.name} is eating`);
+          }
+
+          //Método ladrar, sólo para los perros
+          bark() {
+               console.log("Guauu!, Guauuu!");
+          }
+
+          set setOwner(owner) {
+               this.owner = owner;
+          }
+
+          get getOwner() {
+               return this.owner;
+          }
+
+          /**
+           * @return breed (string)
+          */
+          getBreed() {
+               return this.breed;
+          }
+
+     }
+
+     //Static function, that it does not need to be instanced
+     Perro.greet();
+
+     const tobby = new Perro("Tobby", 2, "Schnauzer");
+     console.log(tobby);
+     tobby.eat();
+     tobby.sleep();
+     tobby.bark();
+     console.log(tobby.getBreed());
+     tobby.setOwner = "Fernando";
+     console.log(tobby.getOwner);
+
+</script>
+
+</html>

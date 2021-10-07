@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title> Exercise 4</title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Exercise 4</h2>
+     <a href="../index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4> Directions </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-6 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.</p>
+               <br>
+               <p>13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.</p>
+               <br>
+               <p>14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.</p>
+          </code>
+     </div>
+</body>
+
+<script>
+
+     // 12th program
+     function isPrime(num = undefined) {
+          if (num === undefined) return console.warn("You did not pass it a number");
+          if (typeof num !== "number") return console.warn("The value you entered was not a number");
+          if (num === 0 || num === 1 || Math.sign(num) === -1) return console.warn("The number can not be lower than 2");
+
+          let div = false;
+          for (let i = 2; i < num; i++) {
+               if (num % i === 0) {
+                    div = true;
+                    break;
+               }
+          }
+          return (div) ? false : true;
+     }
+     // console.log(isPrime());
+     // console.log(isPrime(""));
+     // console.log(isPrime(1));
+     // console.log(isPrime(2));
+     // console.log(isPrime(3));
+     // console.log(isPrime(4));
+     // console.log(isPrime(5));
+     // console.log(isPrime(6));
+     // console.log(isPrime(7));
+     // console.log(isPrime(8));
+     // console.log(isPrime(9));
+     // console.log(isPrime(10));
+     // console.log(isPrime(11));
+     // console.log(isPrime(12));
+     // console.log(isPrime(13));
+
+
+     // 13th program
+     function isPair(num = undefined) {
+          if (num === undefined) return console.warn("The function needs a number");
+          if (typeof num !== "number") return console.warn("The value must be a number");
+          if (!isNaN(num)) if (num % 2 === 0) return true;
+          return false;
+     }
+     // console.log(isPair());
+     // console.log(isPair("sad"));
+     // console.log(isPair(4));
+     // console.log(isPair(5));
+     // console.log(isPair("asdas"));
+
+
+     // 14th program
+     function convertTemperatureTo(degrees = undefined, unit = undefined) {
+          if (degrees === undefined) return console.warn("The function expects a number");
+          if (unit === undefined) return console.warn("The function expects a unit C or F");
+          if (typeof degrees !== "number") return console.warn("Degrees must be a number");
+          if (typeof unit !== "string") return console.warn("The unit system must be a character C or F");
+          if (unit.length !== 1 || !/(C|F)/i.test(unit)) return console.warn("Unit system not allowed");
+          // console.log(!/(C|F)/i.test(unit));
+
+          unit = unit.toLowerCase();
+
+          switch (unit) {
+               case "c":
+                    let celsius = ((degrees - 32) * 5) / 9;
+                    return console.log(`${celsius.toFixed(2)}°C`);
+                    break;
+
+               case "f":
+                    let fahrenheit = (degrees * 1.8) + 32;
+                    return console.log(`${fahrenheit.toFixed(2)}°F`);
+                    break;
+
+               default:
+                    return console.warn("The unit can only be C or F");
+                    break;
+          }
+     }
+     convertTemperatureTo();
+     convertTemperatureTo("");
+     convertTemperatureTo(2);
+     convertTemperatureTo(2, "");
+     convertTemperatureTo("", 2);
+     convertTemperatureTo(2, 2);
+     convertTemperatureTo("", "da");
+     convertTemperatureTo(23, "ed");
+     convertTemperatureTo(23, "e");
+     convertTemperatureTo(23, "e");
+     convertTemperatureTo(245, "c");
+     convertTemperatureTo(23, "f");
+
+</script>
+
+</html>

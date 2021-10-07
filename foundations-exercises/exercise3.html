@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title> Exercise 3</title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Exercise 3</h2>
+     <a href="../index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4> Directions </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-6 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>9) Programa una función que obtenga un numero aleatorio entre 501 y 600.</p>
+               <br>
+               <p>10) Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true.</p>
+               <br>
+               <p>11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120.</p>
+          </code>
+     </div>
+</body>
+
+<script>
+
+
+     //9th program
+     let getRandomNumber = (min = 0, max = 100) => {
+          if (typeof min === "number" && typeof max === "number")
+               return Math.round(min + Math.random() * (max - min));
+          return console.error("The min and max values must be numbers");
+     }
+
+     console.log(getRandomNumber(false, 1));
+     console.log(getRandomNumber(501, ""));
+     console.log(getRandomNumber(501, 600));
+
+     console.clear();
+
+
+     //10th program
+     function isCapicua(n) {
+          if (typeof n !== "number") return console.error(`${n} is not a number`);
+          return parseInt(n.toString().split("").reverse().join("")) - n == 0 ? true : false;
+     }
+
+     console.log(isCapicua(false));
+     console.log(isCapicua(10));
+     console.log(isCapicua(2002));
+     console.log(isCapicua(101010));
+
+     console.clear();
+
+
+     function factorial(n) {
+          if (n === undefined) return console.error("Enter a number");
+          if (typeof n !== "number") return console.error("The values must be a number");
+          if (n === 0) return console.error("The number must not be 0");
+          if (Math.sign(n) === -1) return console.error("The number must not be lower than 0");
+
+          let factorial = 1;
+          for (let i = n; i > 1; i--) {
+               console.log(factorial, i, factorial * i);
+               factorial *= i;
+          }
+          return factorial;
+     }
+
+     console.log(factorial());
+     console.log(factorial(""));
+     console.log(factorial(0));
+     console.log(factorial(-2));
+     console.log(factorial(5));
+
+</script>
+
+</html>

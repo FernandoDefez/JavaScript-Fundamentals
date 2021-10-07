@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <title> Async Await With Fetch </title>
+</head>
+
+<body class="text-center pb-5">
+    <!-- Header -->
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1 fw-bold p-2">Async Await</span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <button id="get-first-users-posts" class="btn btn-primary fw-bold mt-4">Get First User</button>
+        <div class="container w-100 mt-4" id="content">
+        </div>
+    </main>
+
+    <script>
+
+        const getFirstUsersPosts = document.getElementById("get-first-users-posts");
+        const content = document.getElementById("content");
+        const url = "https://jsonplaceholder.typicode.com";
+
+        /**
+         * This function gets the user's posts and their respective comments.
+         *
+         * @param {number} id the user's identification number
+         */
+        /*
+        async function getUserInfo(id){
+            let res = await fetch(`${url}/users?id=${id}`);
+            const user = (await res.json())[0];
+            content.innerHTML += `<div class="row"> <div class="d-flex justify-content-between">
+                                    <p class="text-start fw-bold px-1"> ${user.name} </p>
+                                    <p class="text-start text-secondary fw-bold px-3"> ${user.email} </p>
+                                  </div> </div>`;
+
+            res = await fetch(`${url}/posts?userId=${id}&_limit=5`);
+            const posts = await res.json();
+            content.innerHTML += `<div class="container p-0 mt-3 posts"> <div class="row g-3">` +
+                                    posts.map((post, i) => `<div class="col-12 col-md-6 post-${i}">
+                                        <div class="p-3 border bg-light fw-bold text-start h-100 post"> ${post.title} </div> </div>`).join('')
+                                  + `</div></div>`;
+
+            res = await Promise.all(posts.map( post => fetch(`${url}/comments?postId=${post.id}&_limit=2`)));
+            const comments = await Promise.all(res.map(res => res.json()));
+
+            document.querySelectorAll(".post").forEach((div, i) => div.innerHTML += comments[i].map((comment, index) =>
+                `<div class="accordion mt-3" id="accordion${i}${index}">
+                    <div class="accordion-item text-start">
+                        <h2 class="accordion-header" id="heading${i}${index}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}${index}" aria-expanded="false" aria-controls="collapse${i}">
+                                Comment from &nbsp;<strong> ${comment.email}</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse${i}${index}" class="accordion-collapse collapse" aria-labelledby="heading${i}${index}" data-bs-parent="#accordion${i}${index}">
+                            <div class="accordion-body fw-light">
+                                <p class="m-0">${comment.body}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>`).join(''));
+        }*/
+
+        getFirstUsersPosts.addEventListener("click", () => getProfile(1));
+
+        /**
+         * @param {number} id
+         * @return {promise} user The user's data
+         */
+        async function getUser(id) {
+            let res = await fetch(`${url}/users?id=${id}`);
+            const user = (await res.json())[0];
+            content.innerHTML +=
+                `<div class="row"> 
+                    <div class="d-flex justify-content-between">
+                        <p class="text-start fw-bold px-1"> ${user.name} </p>
+                        <p class="text-start text-secondary fw-bold px-3"> ${user.email} </p>
+                    </div> 
+                </div>`;
+
+            return user;
+        }
+
+        /**
+         * @param {object} user
+         * @return {promise} posts
+         */
+        async function getPosts(user) {
+            let res = await fetch(`${url}/posts?userId=${user.id}&_limit=5`);
+            const posts = await res.json();
+            content.innerHTML +=
+                `<div class="container p-0 mt-3 posts">
+                    <div class="row g-3">` + posts.map((post, i) => `<div class="col-12 col-md-6 post-${i}">
+                        <div class="p-3 border bg-light fw-bold text-start h-100 post"> 
+                            ${post.title} 
+                        </div>
+                    </div>`).join('') + `</div></div>`;
+
+            return posts;
+        }
+
+        /**
+         * @param {object} posts
+         * @return {promise} comments
+         */
+        async function getComments(posts) {
+            let res = await Promise.all(posts.map(post => fetch(`${url}/comments?postId=${post.id}&_limit=2`)));
+            const comments = await Promise.all(res.map(res => res.json()));
+
+            document.querySelectorAll(".post").forEach((div, i) => div.innerHTML += comments[i].map((comment, index) =>
+                `<div class="accordion mt-3" id="accordion${i}${index}">
+                    <div class="accordion-item text-start">
+                        <h2 class="accordion-header" id="heading${i}${index}">
+                            <button class="accordion-button collapsed"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}${index}"
+                                aria-expanded="false" aria-controls="collapse${i}"> comment from &nbsp;
+                                <strong> ${comment.email}</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse${i}${index}" class="accordion-collapse collapse"
+                            aria-labelledby="heading${i}${index}" data-bs-parent="#accordion${i}${index}">
+                            <div class="accordion-body fw-light">
+                                <p class="m-0">${comment.body}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>`).join(''));
+
+            return comments;
+        }
+
+        const getProfile = async (id) => {
+            try {
+                content.innerHTML = ``;
+                const user = await getUser(id);
+                const posts = await getPosts(user);
+                const comments = await getComments(posts);
+                console.log(user);
+                console.log(posts);
+                console.log(comments);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

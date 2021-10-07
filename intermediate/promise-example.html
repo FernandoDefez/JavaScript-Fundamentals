@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title> Promises Example </title>
+</head>
+
+<body class="text-center pb-5">
+  <h4 class="mt-4"> Getting The First User's Posts </h4>
+  <div class="col-11 m-auto p-2 rounded">
+    <button id="get-first-users-posts" class="btn btn-primary">Get First User</button>
+    <div class="card w-100 mt-4" id="content">
+      <!-- Username  -->
+      <!-- Posts -->
+    </div>
+  </div>
+  <br>
+</body>
+
+<script src="../lib/index.js"></script>
+<script>
+  const getFirstUsersPosts = document.getElementById("get-first-users-posts");
+  const content = document.getElementById("content");
+  const url = "https://jsonplaceholder.typicode.com";
+
+
+  getFirstUsersPosts.addEventListener("click", () => {
+    content.innerHTML = ``;
+    getUser(1)
+      .then((users) => {
+        const user = users[0]
+        content.innerHTML += `<div class="card-header text-start"> <h5 class="card-title">${user.name}</h5> </div>`;
+        return user;
+      })
+      .then(user => getPosts(user.id))
+      .then(posts => {
+        content.innerHTML += `<ul class="list-group list-group-flush text-start">`;
+        posts.forEach((post) => content.innerHTML += `<li class="list-group-item">${post.title}</li>`)
+        content.innerHTML += ` </ul>`;
+      })
+      .catch(err => console.warn(err));
+  });
+
+  /**
+   * This function gets the user data
+   *
+   * @param {number} id the user's unique number
+   * @callback { Resolve }
+   * @callback { Reject }
+   * @return { Promise }
+   * - The function passed to the Promise is called executor () =>
+   *
+   * */
+  const getUser = (id) => new Promise((resolve, reject) => {
+    request({ uri: `${url}/users?id=${id}` }, (err, res, body) => {
+      (err) ? reject(err) : resolve(JSON.parse(body));
+    });
+  });
+
+  const getPosts = (id) => new Promise((resolve, reject) => {
+    request({ uri: `${url}/posts?userId=${id}&_limit=3` }, (err, res, body) => {
+      (err) ? reject(err) : resolve(JSON.parse(body));
+    });
+  });
+
+</script>
+
+</html>

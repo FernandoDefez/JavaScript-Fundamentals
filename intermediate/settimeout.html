@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title> Set Time Out </title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Set Time Out </h2>
+     <a href="../index.html" class="fw-bold text-decoration-none"> &leftarrow; Home </a>
+     <br>
+     <br>
+     <h4> How the callstack works </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p class="comment"> // The folllowing script shows how the procedures are stored in the call stack </p>
+               <p>console.log("This block of code runs firstly");</p>
+               <p>setTimeout(() => {
+                    console.log("This block of code runs secondly");
+               }, 5000);</p>
+               <p>console.log("This block of code runs thirdly");</p>
+          </code>
+     </div>
+     <br>
+</body>
+
+<script>
+
+     /**
+      * The folllowing script shows how the procedures are stored in the call stack
+     */
+     console.log("Hello");
+
+     setTimeout(() => {
+          console.log("My name is Fernando");
+     }, 1000);
+
+     console.log("World");
+
+     // Callbacks is a function that get executed once another function has previously been executed
+
+     /**
+      * Callback example
+      * @param {int} value
+      * @param {anonymous function} callback
+     */
+
+     function call(value, callback) {
+          setTimeout(() => callback(value, value * value), 2000);
+     }
+
+     call(2, (value, result) => {
+          console.log("Starting callback");
+          console.log("Callback", value, result);
+          call(4, (value, result) => {
+               console.log("Callback", value, result);
+               call(1, (value, result) => {
+                    console.log("Callback", value, result); // This is what is called "Callback hell"
+               });
+          });
+     });
+
+     // This is where the promises come in
+     // Promises, Generator and Async Functions allow you to handle callbacks efficiently
+
+</script>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title>Iterables | Iterators</title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark text-white p-3 fw-bold"> Iterables | Iterators </h2>
+     <a href="../index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4> Iterables | Iterators </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-5 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p class="comment"> // Every public property within an iterable can be iterated </p>
+               <p class="comment"> // Maps, Strings, Array, Sets, etc aka Collections </p>
+               <br>
+               <p class="comment"> // The iterator (kind of a pointer) is the one who is iterating the collection & iterable </p>
+               <p class="comment"> // for's, spread operator, promises. </p>
+          </code>
+     </div>
+     <br>
+     <!-- SCRIPTS -->
+     <script>
+          // Every public property within an iterable can be iterated
+          // Maps, Strings, Array, Sets, etc aka Collections
+
+          // The iterator (kind of a pointer) is the one who is iterating the collection & iterable
+          // for's, spread operator, promises.
+
+          const iterable = [1, 2, 3];
+
+          // Getting the iterator of the iterable
+          const iterator = iterable[Symbol.iterator]();
+
+          console.log(iterable);
+          // console.log(iterator.next());
+          // console.log(iterator.next());
+          // console.log(iterator.next());
+          // console.log(iterator.next());
+
+          let next = iterator.next();
+          while (!next.done) {
+               console.log(next.value);
+               next = iterator.next();
+          }
+
+          // And all of these can be done with Strings, Array, Sets, Maps
+
+          // Generators
+          function* iterable() {
+               yield 1;
+               yield 2;
+               yield 3;
+               yield 4;
+               yield 5;
+          }
+
+
+
+     </script>
+</body>
+
+</html>

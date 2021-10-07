@@ -10,7 +10,7 @@
 ### Topic 2
 
 1. Item 1
-1. Item 2
+2. Item 2
 
 ---
-⌨ with ❤ from [FernandoDefez](https://github.com/FernandoDefez) 😊 
+`⌨` with `❤` :blue_heart: from [FernandoDefez](https://github.com/FernandoDefez) 😊

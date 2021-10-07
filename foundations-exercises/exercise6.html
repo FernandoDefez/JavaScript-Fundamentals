@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title> Exercise 6</title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Exercise 6</h2>
+     <a href="../index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4> Directions </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-6 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe.miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.</p>
+               <br>
+               <p>19) Programa una función que valide que un texto sea un nombre válido, pe.miFuncion("Jonathan MirCha") devolverá verdadero.</p>
+               <br>
+               <p>20) Programa una función que valide que un texto sea un email válido, pe.miFuncion("jonmircha@gmail.com") devolverá verdadero.</p>
+          </code>
+     </div>
+</body>
+
+<script>
+
+
+     //18th program 
+     function getVowelsAndConsonants(text = undefined) {
+          if (text === undefined) return console.warn("Enter the text");
+          if (typeof text !== "string") return console.warn("The text must be an string");
+
+          const dict = {
+               vowels: 0,
+               consonants: 0,
+               special: 0
+          }
+
+          let splittedText = text.toLowerCase().trim().replace(/\s/g, "").split("");
+
+          for (const letter of splittedText) {
+               if (/(a|á|e|é|i|í|o|ó|u|ú|ü)/i.test(letter)) {
+                    ++dict.vowels;
+               }
+               else if (/(b|c|d|f|g|h|j|k|l|m|n|ñ|p|q|r|s|t|v|x|z|w|t)/i.test(letter)) {
+                    ++dict.consonants;
+               }
+               else {
+                    ++dict.special;
+               }
+          }
+          console.log(text, dict);
+     }
+
+     getVowelsAndConsonants();
+     getVowelsAndConsonants(2);
+     getVowelsAndConsonants("");
+     getVowelsAndConsonants("$");
+     getVowelsAndConsonants("Fernando");
+     getVowelsAndConsonants("Hola %Mundo");
+     getVowelsAndConsonants("La ambigüedad es algo que se puede interpretar de dos formas");
+     getVowelsAndConsonants("¿Cómo te llamas?");
+
+     //19th program
+     function isAValidName(name = undefined) {
+          if (name === undefined) return console.warn("Enter a name");
+          if (typeof name !== "string") return console.warn("The name must be an string");
+          //^ no puede haber nada antes
+          //$ no puede haber nada después
+          //+ para evaluar cada caracter
+          return console.log(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/g.test(name));
+     }
+
+     // isAValidName("Fernando Pérez Defez");
+     // isAValidName("Fernando Pérez Defez, tienes");
+
+     //20th program
+     function isAValidEmail(email = undefined) {
+          if (email === undefined) return console.warn("Enter an email");
+          if (typeof email !== "string") return console.warn("The email must be an string");
+          return console.log(/[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})/i.test(email));
+     }
+
+     // isAValidEmail("FernandoDefez99@gmail.com");
+
+</script>
+
+</html>

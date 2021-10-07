@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../styles.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <title> Exercise 2</title>
+</head>
+
+<body class="text-center pb-5">
+     <h2 class="w-100 bg-dark  text-white p-3 fw-bold"> Exercise 2</h2>
+     <a href="../index.html" class="fw-bold text-decoration-none"> &leftarrow; Home</a>
+     <br>
+     <br>
+     <h4> Directions </h4>
+     <div class="col-10 col-sm-8 col-md-6 col-lg-6 bg-dark m-auto p-2 rounded">
+          <code class="text-start">
+               <p>5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".</p>
+               <br>
+               <p>6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.</p>
+               <br>
+               <p>7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.</p>
+               <br>
+               <p>8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.</p>
+          </code>
+     </div>
+</body>
+
+<script>
+
+
+     //5th and 7th program
+     function isPalidrome(text = "") {
+          let reversedWord;
+          if (text.length > 3) {
+               reversedWord = text.split("").reverse().join("");
+          } else {
+               console.warn("The string must have at least 3 characters");
+          }
+          if (text === reversedWord) {
+               return true;
+          }
+          return false;
+     }
+
+     console.log(isPalidrome("rever"));
+     console.log(isPalidrome("hola"));
+     console.log(isPalidrome(""));
+     console.log(isPalidrome("sos"));
+
+     console.clear();
+
+     //6th program
+     let matchCounter = (text = "", word = "") => {
+          if (!text) return console.warn("The text must not be empty");
+          if (!word) return console.warn("The word you are lokking for must not be empty");
+
+          console.log(text);
+
+          let i = 0, counter = 0;
+          //I must stop till I get an -1 from the indexOf
+          while (i !== -1) {
+               //I look for the word
+               i = text.indexOf(word, i);
+               if (i !== -1) {
+                    console.log(i);
+                    i++;
+                    counter++;
+                    console.log(counter);
+               } else {
+                    console.log(i);
+               }
+          }
+          console.log(`The text includes the word ${word} ${counter} times`);
+     }
+
+     matchCounter("", "");
+     matchCounter("", "mundo");
+     matchCounter("hola mundo adios mundo", "");
+     matchCounter("hola mundo adios mundo", "mundo");
+
+     console.log("hola mundo adios mundo".indexOf("mundo"));
+     console.log("hola mundo adios mundo".indexOf("mundo", 6));
+     console.log("hola mundo adios mundo".indexOf("mundo", 18));
+
+     console.clear();
+
+     // 8th program
+     function deletePattern(text, pattern) {
+          if (!text) return console.error("The text must not be empty");
+          if (!pattern) return console.error("The pattern must not be empty");
+          return text.replace(new RegExp(pattern, "ig"), "");
+     }
+     console.log(deletePattern("xyz1, xyz2, xyz3, xyz4, xyz5", "xy"));
+
+
+     console.clear();
+
+
+     /**
+      * 1st example: A = [3, 2, 0, 1] and  S = "cdeo"
+      * R = "code"
+      * 
+      * @param A array of people
+      * @param S coded message
+     */
+
+     function solve(A, S) {
+          let i = 0;
+          let v = A[i]; // v = 3
+          let r = "";
+
+          while (v != 0) {
+               r = r + S[i]; //{c} {co} {cod}
+               i = v; //{3} {1} {2}
+               v = A[i]; //{1} {2} {0}
+               console.log(r, i, v);
+          }
+          r += S[i];
+
+          return r;
+     }
+
+     console.log(solve([3, 2, 0, 1], "cdeo"));
+     console.log(solve([5, 2, 0, 1, 6, 4, 8, 3, 7], "cdeenetpi"));
+
+
+</script>
+
+</html>
